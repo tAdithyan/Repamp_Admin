@@ -1,0 +1,41 @@
+.bin-location-input {
+  display: flex;
+  gap: 8px;
+}
+
+.bin-location-input input {
+  flex: 1;
+  min-width: 0;
+}
+
+.bin-location-input button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(99, 102, 241, 0.12);
+  color: var(--primary-color);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.bin-location-input button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .bin-location-input {
+    flex-direction: column;
+  }
+
+  .bin-location-input button {
+    min-height: 42px;
+  }
+}

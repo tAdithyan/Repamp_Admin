@@ -1,0 +1,33 @@
+.complaints-page{max-width:1320px;margin:0 auto;padding:30px;color:var(--text-primary,#17211d)}
+.complaints-page-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.complaints-page-header>div>span{font-size:12px;font-weight:800;color:var(--primary-color,#008b68);text-transform:uppercase;letter-spacing:.09em}
+.complaints-page-header h1{font-size:30px;margin:6px 0 4px}
+.complaints-page-header p{color:var(--text-secondary,#718078);margin:0}
+.complaints-refresh,.complaint-send{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;background:var(--primary-color,#008b68);color:#fff;padding:11px 15px;font-weight:800;cursor:pointer}
+.complaints-refresh:disabled,.complaint-send:disabled{opacity:.55;cursor:wait}
+.complaints-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.complaints-filters{display:flex;flex-wrap:wrap;gap:7px}
+.complaints-filters button{border:1px solid var(--border-color,#dce6e0);border-radius:999px;padding:9px 13px;background:var(--card-background,#fff);color:var(--text-secondary,#718078);font-weight:700;cursor:pointer}
+.complaints-filters button.active{background:var(--primary-color,#008b68);border-color:var(--primary-color,#008b68);color:white}
+.complaints-search{display:flex;align-items:center;gap:9px;min-width:230px;border:1px solid var(--border-color,#dce6e0);border-radius:12px;background:var(--card-background,#fff);padding:0 12px;color:#7d8983}
+.complaints-search input{width:100%;height:42px;border:0;outline:0;background:transparent;color:inherit}
+.complaints-list{display:grid;gap:13px}
+.complaint-admin-card{background:var(--card-background,#fff);border:1px solid var(--border-color,#dce6e0);border-radius:18px;padding:18px;box-shadow:0 4px 16px #153e3010}
+.complaint-admin-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.complaint-category-label{font-size:11px;color:var(--primary-color,#008b68);font-weight:900;text-transform:uppercase;letter-spacing:.07em}
+.complaint-status{font-size:11px;font-weight:800;padding:6px 10px;border-radius:999px;background:#fff5dc;color:#855b08}
+.complaint-status.in_review{background:#e8f2ff;color:#245e9b}.complaint-status.resolved{background:#e4f6eb;color:#197347}
+.complaint-admin-card h2{font-size:17px;margin:11px 0 6px}
+.complaint-description{white-space:pre-wrap;color:var(--text-secondary,#66736d);line-height:1.55;margin:0 0 13px}
+.complaint-customer{display:flex;align-items:center;flex-wrap:wrap;gap:7px;color:var(--text-secondary,#718078);font-size:12px;padding-bottom:14px;border-bottom:1px solid var(--border-color,#e5ece8)}
+.complaint-customer strong{color:var(--text-primary,#17211d)}.complaint-customer time{margin-left:auto}
+.complaint-admin-actions{display:grid;grid-template-columns:180px minmax(220px,1fr) auto;align-items:end;gap:12px;padding-top:14px}
+.complaint-admin-actions label{display:grid;gap:6px;color:var(--text-secondary,#66736d);font-size:11px;font-weight:800}
+.complaint-admin-actions select,.complaint-admin-actions textarea{width:100%;border:1px solid var(--border-color,#dce6e0);border-radius:10px;padding:10px;background:var(--input-background,#fbfdfb);color:var(--text-primary,#17211d);font:inherit}
+.complaint-admin-actions textarea{height:44px;min-height:44px;resize:vertical}
+.complaint-send{height:40px;white-space:nowrap}
+.complaints-empty,.complaints-loading{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border:1px dashed var(--border-color,#dce6e0);border-radius:18px;color:var(--text-secondary,#718078)}
+.complaints-empty strong{color:var(--text-primary,#17211d)}.complaints-empty span{font-size:13px}
+.complaints-error{display:flex;justify-content:space-between;align-items:center;background:#fff0ef;color:#a3231b;padding:14px;border-radius:12px;margin-bottom:15px}.complaints-error button{border:0;background:none;color:inherit;font-weight:800;cursor:pointer}
+.complaints-spin{animation:complaints-rotate 1s linear infinite}@keyframes complaints-rotate{to{transform:rotate(360deg)}}
+@media(max-width:760px){.complaints-page{padding:18px}.complaints-page-header{align-items:flex-start}.complaints-toolbar{align-items:stretch;flex-direction:column}.complaints-search{min-width:unset}.complaint-admin-actions{grid-template-columns:1fr}.complaint-customer time{margin-left:0;width:100%}}

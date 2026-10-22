@@ -1,0 +1,23 @@
+.attendance-heading { display: flex; align-items: center; justify-content: space-between; margin: 18px 0 10px; }
+.attendance-heading > span { font-size: .82rem; font-weight: 800; }
+.attendance-heading small { display: flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: .62rem; }
+.done-dot,.missed-dot { width: 7px; height: 7px; margin-left: 7px; border-radius: 50%; background: #16a34a; }
+.missed-dot { background: #dc2626; }
+.attendance-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
+.attendance-grid article { display: grid; grid-template-columns: 30px 1fr; align-items: center; gap: 8px; padding: 12px; border: 1px solid; border-radius: 12px; }
+.attendance-grid article > div { display: flex; flex-direction: column; }
+.attendance-grid article strong { font-size: .75rem; }
+.attendance-grid article span { color: var(--text-muted); font-size: .62rem; }
+.attendance-grid article > small { grid-column: 1/-1; padding-top: 7px; border-top: 1px solid currentColor; font-size: .6rem; text-transform: capitalize; opacity: .8; }
+.attendance-done { border-color: rgba(22,163,74,.28)!important; background: rgba(22,163,74,.08); color: #16a34a; }
+.attendance-missed { border-color: rgba(220,38,38,.25)!important; background: rgba(220,38,38,.07); color: #dc2626; }
+.attendance-grid .collection-empty { grid-column: 1/-1; }
+@media(max-width:760px){.attendance-grid{grid-template-columns:1fr 1fr}.attendance-heading{align-items:flex-start;flex-direction:column;gap:6px}}
+.attendance-table-wrap { overflow-x: auto; border: 1px solid var(--border-color); border-radius: 12px; }
+.attendance-table { width: 100%; border-collapse: collapse; min-width: 650px; }
+.attendance-table th { padding: 10px 12px; text-align: left; background: var(--glass-bg); color: var(--text-muted); font-size: .64rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.attendance-table td { padding: 11px 12px; border-top: 1px solid var(--border-color); color: var(--text-color); font-size: .72rem; }
+.attendance-status { text-transform: capitalize; }
+.table-result { display: inline-flex; align-items: center; gap: 5px; font-size: .67rem; font-weight: 800; }
+.table-result.done { color: #16a34a; }
+.table-result.missed { color: #dc2626; }

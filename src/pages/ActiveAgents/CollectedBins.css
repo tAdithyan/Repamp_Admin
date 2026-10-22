@@ -1,0 +1,21 @@
+.agent-bins {
+  position: absolute;
+  z-index: 600;
+  right: 16px;
+  top: 16px;
+  width: 230px;
+  max-height: 250px;
+  overflow: hidden;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .18);
+  color: #17202a;
+}
+.agent-bins-title { display: flex; align-items: center; justify-content: space-between; padding: 11px 12px; border-bottom: 1px solid #e2e8f0; }
+.agent-bins-title span { display: flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 800; }
+.agent-bins-title strong { display: grid; place-items: center; min-width: 22px; height: 20px; border-radius: 10px; background: #fef3c7; color: #b45309; font-size: .65rem; }
+.agent-bins-list { max-height: 205px; overflow: auto; }
+.agent-bins-list > div { display: flex; flex-direction: column; padding: 9px 12px; border-bottom: 1px solid #eef2f6; }
+.agent-bins-list span { display: flex; justify-content: space-between; gap: 8px; font-size: .68rem; }
+.agent-bins-list small { margin-top: 3px; color: #64748b; font-size: .6rem; }
+.agent-bins-list p { padding: 18px 12px; text-align: center; color: #64748b; font-size: .68rem; }

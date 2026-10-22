@@ -1,0 +1,65 @@
+:root {
+  --primary-color: #00a9a2;
+  --primary-hover: #008f89;
+  --on-primary: #ffffff;
+  --secondary-color: #009b6b;
+  --accent-color: #f5ff00;
+  --bg-color: #f3fbf7;
+  --text-color: #11181c;
+  --text-muted: #66736e;
+  --sidebar-bg: #f3fbf7;
+  --border-color: #dde7e2;
+  --card-bg: #ffffff;
+  --surface-muted: #e8f5ef;
+  --input-bg: #f8fcfa;
+  --error-color: #b42318;
+  --success-color: #009b6b;
+  --warning-bg: #fff8e7;
+  --warning-color: #7a5310;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --primary-color: #35c99a;
+  --primary-hover: #27a879;
+  --on-primary: #08251c;
+  --secondary-color: #27a879;
+  --accent-color: #35c99a;
+  --bg-color: #202322;
+  --text-color: #f2f4f3;
+  --text-muted: #a9b0ad;
+  --sidebar-bg: #202725;
+  --border-color: #3a403d;
+  --card-bg: #242827;
+  --surface-muted: #2c3330;
+  --input-bg: #242927;
+  --error-color: #ff938a;
+  --success-color: #35c99a;
+  --warning-bg: #383329;
+  --warning-color: #f4d38d;
+}
+
+/* Common utility colors */
+:root {
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme='dark'] {
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] :is(.header-avatar,.large-avatar,.profile-avatar){background:linear-gradient(135deg,#35c99a,#27a879);color:var(--on-primary)}
+[data-theme='dark'] .weight-column i{background:var(--secondary-color)}
+[data-theme='dark'] .dashboard-kpi .kpi-icon{background:var(--surface-muted);color:var(--primary-color)}
+[data-theme='dark'] .agent-list-heading span{background:var(--surface-muted);color:var(--primary-color)}
+[data-theme='dark'] .agent-item:hover,[data-theme='dark'] .agent-item.selected{background:var(--surface-muted)}
+[data-theme='dark'] .agent-item.selected{box-shadow:inset 3px 0 var(--primary-color)}
+[data-theme='dark'] .agent-map-actions a{background:var(--surface-muted);color:var(--primary-color)}
+[data-theme='dark'] .wa-stats svg,[data-theme='dark'] .wa-eyebrow{color:var(--primary-color)}
+[data-theme='dark'] .wa-chart-options button:focus-visible,[data-theme='dark'] .wa-download button:focus-visible{outline-color:var(--primary-color)}
+[data-theme='dark'] .wa-chart-options button[aria-pressed=true],
+[data-theme='dark'] .sa-actions button:first-child{background:var(--primary-color);border-color:var(--primary-color);color:var(--on-primary)}
+[data-theme='dark'] .impact-column i{background:var(--secondary-color)}

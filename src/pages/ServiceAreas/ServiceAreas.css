@@ -1,0 +1,46 @@
+.service-areas-page{color:var(--text-color)}
+.service-areas-header{display:flex;justify-content:space-between;align-items:center;gap:18px}
+.service-areas-header>div>span{color:var(--primary-color);font-size:.68rem;font-weight:900;letter-spacing:.1em}
+.service-areas-header h1{margin:5px 0;font-size:1.9rem}
+.service-areas-header p{margin:0;color:var(--text-muted);font-size:.75rem}
+.district-count{padding:8px 11px;border:1px solid var(--border-color);border-radius:10px;background:var(--card-bg);color:var(--text-muted);font-size:.68rem;font-weight:800;white-space:nowrap}
+.service-area-note{display:flex;align-items:flex-start;gap:11px;margin:20px 0;padding:14px;border:1px solid var(--border-color);border-radius:14px;background:var(--card-bg);color:var(--primary-color)}
+.service-area-note p{margin:0;color:var(--text-muted);font-size:.7rem;line-height:1.6}
+.service-area-notice,.service-area-error{padding:11px 13px;border-radius:10px;font-size:.72rem}
+.service-area-notice{background:#dcfce7;color:#15803d}
+.service-area-error{background:#fee2e2;color:#b91c1c}
+.service-area-error button{margin-left:10px;padding:5px 8px;border:0;border-radius:7px;background:#fff;color:#b91c1c;font-weight:800;cursor:pointer}
+.district-search{display:flex;align-items:center;gap:9px;margin:18px 0;padding:0 12px;border:1px solid var(--border-color);border-radius:11px;background:var(--card-bg);color:var(--text-muted)}
+.district-search input{width:100%;min-height:42px;border:0;outline:0;background:transparent;color:var(--text-color);font:inherit;font-size:.72rem}
+.service-area-empty{display:grid;justify-items:center;gap:8px;padding:52px 20px;border:1px dashed var(--border-color);border-radius:18px;text-align:center;color:var(--primary-color)}
+.service-area-empty h2{margin:4px 0;color:var(--text-color);font-size:1.05rem}
+.service-area-empty p{margin:0 0 9px;color:var(--text-muted);font-size:.72rem}
+.district-serviceability-list{display:grid;gap:9px}
+.district-serviceability-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border:1px solid var(--border-color);border-radius:14px;background:var(--card-bg)}
+.district-serviceability-copy h2{margin:0;font-size:.85rem}
+.district-serviceability-copy p{margin:4px 0;color:var(--text-muted);font-size:.65rem}
+.district-serviceability-copy small{color:var(--text-muted);font-size:.59rem}
+.district-serviceability-actions{display:flex;align-items:center;gap:10px}
+.district-status{padding:6px 9px;border-radius:999px;background:rgba(239,68,68,.12);color:#b91c1c;font-size:.61rem;font-weight:800}
+.district-status-active{background:rgba(22,163,106,.12);color:#087b52}
+.district-toggle{min-width:74px;padding:8px 10px;border:0;border-radius:9px;background:var(--primary-color);color:#fff;font-size:.65rem;font-weight:800;cursor:pointer}
+.district-toggle-disable{border:1px solid var(--border-color);background:transparent;color:var(--text-color)}
+.district-toggle:disabled{opacity:.6;cursor:wait}
+.radius-panel{margin:22px 0;padding:18px;border:1px solid var(--border-color);border-radius:16px;background:var(--card-bg)}
+.radius-panel-heading{display:flex;align-items:center;justify-content:space-between;color:var(--primary-color)}
+.radius-panel-heading>div>span{font-size:.64rem;font-weight:900;letter-spacing:.1em}
+.radius-panel-heading h2{margin:5px 0;color:var(--text-color);font-size:1.15rem}
+.radius-panel-heading p{margin:0 0 14px;color:var(--text-muted);font-size:.7rem}
+.radius-map{height:320px;width:100%;z-index:0;border-radius:13px}
+.radius-form{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:10px;margin-top:14px;align-items:end}
+.radius-form label{display:grid;gap:5px;color:var(--text-muted);font-size:.65rem;font-weight:800}
+.radius-form input{width:100%;min-height:40px;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border-color);border-radius:9px;background:var(--card-bg);color:var(--text-color);font:inherit;font-weight:500}
+.radius-save{display:flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 12px;border:0;border-radius:9px;background:var(--primary-color);color:#fff;font-size:.68rem;font-weight:850;cursor:pointer;grid-column:span 2}
+.radius-save:disabled{opacity:.6;cursor:wait}
+.radius-list{display:grid;gap:8px;margin-top:14px}
+.radius-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;border:1px solid var(--border-color);border-radius:11px}
+.radius-card h3{margin:0;font-size:.8rem}
+.radius-card p{margin:4px 0;color:var(--text-muted);font-size:.66rem}
+.radius-card small{color:var(--text-muted);font-size:.6rem}
+@media(max-width:800px){.radius-form{grid-template-columns:repeat(2,minmax(100px,1fr))}.radius-save{grid-column:span 2}}
+@media(max-width:600px){.service-areas-header{align-items:flex-start}.service-areas-header h1{font-size:1.5rem}.district-count{font-size:.59rem}.district-serviceability-card{align-items:flex-start;padding:12px}.district-serviceability-actions{flex-direction:column;align-items:flex-end;gap:7px}.district-serviceability-copy small{display:block;max-width:195px;line-height:1.5}}

@@ -1,0 +1,17 @@
+.recurring-qr-overlay { position: fixed; inset: 0; z-index: 800; display: grid; place-items: center; padding: 20px; background: rgba(15,23,42,.65); }
+.recurring-qr-sheet { position: relative; width: 390px; padding: 30px; text-align: center; border-radius: 17px; background: #fff; color: #111; }
+.recurring-qr-brand { color: #16a36a; font-weight: 900; letter-spacing: .14em; }
+.recurring-qr-sheet h2 { margin: 8px 0 2px; color: #111; }
+.recurring-qr-sheet > strong { display: block; }
+.recurring-qr-sheet img { display: block; width: 270px; height: 270px; margin: 16px auto; }
+.recurring-qr-sheet p { font-weight: 800; }
+.recurring-qr-sheet small { display: block; margin-top: 6px; color: #555; }
+.recurring-qr-close { position: absolute; right: 14px; top: 14px; }
+.recurring-print { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 11px; margin-top: 18px; border: 0; border-radius: 9px; background: #16a36a; color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+@media print {
+  body * { visibility: hidden !important; }
+  .recurring-qr-overlay, .recurring-qr-sheet, .recurring-qr-sheet * { visibility: visible !important; }
+  .recurring-qr-overlay { position: absolute; inset: 0; background: #fff; padding: 0; }
+  .recurring-qr-sheet { box-shadow: none; }
+  .recurring-print, .recurring-qr-close { display: none !important; }
+}
