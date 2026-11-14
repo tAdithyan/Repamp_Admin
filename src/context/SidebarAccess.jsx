@@ -28,10 +28,19 @@ export function SidebarPageGuard({ children }) {
   const { pathname } = useLocation();
   const section = pathname.split('/')[2] || 'dashboard';
   const isAdmin = ['ROL_1', 'ROL_2', 'SuperAdmin', 'Admin'].includes(appUser?.role);
-  const adminManagedSections = ['service-areas', 'complaints', 'content-pages'];
+  const adminManagedSections = [
+    'content-pages',
+    'guest-user',
+    'pickups',
+    'agents',
+    'waste-analysis',
+    'recurring-pickups',
+    'complaints',
+    'service-areas',
+  ];
   if (section === 'account' || (adminManagedSections.includes(section) && isAdmin)) return children;
   if (loading) return <p role="status">Loading your sidebar access…</p>;
   if (error) return <div role="alert"><p>Unable to load sidebar access. Please ensure the backend has been updated, then retry.</p><button onClick={() => retry()}>Retry</button></div>;
-  if (!sections.includes(section)) return <Navigate to={sections.length ? `/admin/${sections[0]}` : '/admin/account'} replace />;
+  if (sections.length > 0 && !sections.includes(section)) return <Navigate to={`/admin/${sections[0]}`} replace />;
   return children;
 }

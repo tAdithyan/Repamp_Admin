@@ -1,78 +1,1597 @@
-.pickup-page { text-align: left; color: var(--text-color); }
-.pickup-page__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
-.pickup-page__header h1 { margin: 4px 0 6px; font-size: 2rem; color: var(--text-color); }
-.pickup-page__header p { color: var(--text-muted); }
-.pickup-page__eyebrow { color: var(--primary-color); font-size: .75rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
-.pickup-page__refresh, .pickup-card__assign, .pickup-card__cancel, .assignment-modal__submit, .assignment-modal__cancel { border: 0; cursor: pointer; font: inherit; }
-.pickup-page__refresh { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--card-bg); color: var(--text-color); }
-.pickup-alert { padding: 12px 16px; border-radius: 10px; margin-bottom: 16px; font-size: .9rem; }
-.pickup-alert--success { background: rgba(34,197,94,.12); color: #16a34a; }
-.pickup-alert--error { background: rgba(239,68,68,.12); color: #dc2626; }
-.pickup-toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
-.pickup-search { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 14px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; color: var(--text-muted); }
-.pickup-search input, .pickup-toolbar select, .assignment-modal select { border: 0; outline: 0; color: var(--text-color); background: var(--card-bg); font: inherit; }
-.pickup-search input { width: 100%; padding: 12px 0; }
-.pickup-toolbar select { min-width: 180px; padding: 0 14px; border: 1px solid var(--border-color); border-radius: 12px; }
-.pickup-date-filter { display: flex; align-items: center; gap: 8px; min-width: 190px; padding: 0 12px; border: 1px solid var(--border-color); border-radius: 12px; background: var(--card-bg); color: var(--text-muted); }
-.pickup-date-filter input { min-width: 0; width: 100%; padding: 11px 0; border: 0; outline: 0; background: transparent; color: var(--text-color); font: inherit; }
-.pickup-date-clear { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 9px 11px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--card-bg); color: var(--text-muted); font: inherit; font-size: .8rem; cursor: pointer; white-space: nowrap; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-.pickup-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-.pickup-summary div { display: flex; flex-direction: column; gap: 3px; padding: 16px; border: 1px solid var(--border-color); border-radius: 14px; background: var(--card-bg); }
-.pickup-summary strong { color: var(--text-color); font-size: 1.45rem; }
-.pickup-summary span { color: var(--text-muted); font-size: .78rem; }
-.pickup-list { display: flex; flex-direction: column; gap: 10px; }
-.pickup-pagination { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; color: var(--text-muted); font-size: .82rem; }
-.pickup-pagination > div { display: flex; align-items: center; gap: 12px; }
-.pickup-pagination button { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 9px; background: var(--card-bg); color: var(--text-color); font: inherit; cursor: pointer; }
-.pickup-pagination button:disabled { opacity: .45; cursor: not-allowed; }
-.pickup-card { display: grid; grid-template-columns: minmax(270px, 1.55fr) minmax(140px, .8fr) minmax(140px, .8fr) auto; align-items: center; gap: 18px; padding: 16px; border: 1px solid var(--border-color); border-radius: 15px; background: var(--card-bg); box-shadow: 0 3px 12px rgba(15,23,42,.03); }
-.pickup-card__main { display: flex; gap: 13px; align-items: center; min-width: 0; }
-.pickup-card__icon, .assignment-modal__icon { display: grid; place-items: center; color: var(--primary-color); background: rgba(99,102,241,.12); }
-.pickup-card__icon { width: 44px; height: 44px; border-radius: 13px; flex: 0 0 auto; }
-.pickup-card__title-row { display: flex; align-items: center; gap: 9px; }
-.pickup-card h3 { margin: 0; color: var(--text-color); font-size: .95rem; }
-.pickup-card__waste { margin-top: 2px; font-size: .8rem; color: var(--text-muted); }
-.pickup-card__details { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 7px; }
-.pickup-card__details span { display: flex; align-items: center; gap: 5px; color: var(--text-muted); font-size: .7rem; }
-.pickup-card__person { display: flex; flex-direction: column; min-width: 0; }
-.pickup-card__person small { color: var(--text-muted); font-size: .68rem; }
-.pickup-card__person strong { overflow: hidden; color: var(--text-color); font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
-.pickup-card__person span { color: var(--text-muted); font-size: .68rem; }
-.pickup-status { padding: 3px 7px; border-radius: 999px; background: rgba(99,102,241,.12); color: var(--primary-color); font-size: .6rem; font-weight: 800; }
-.pickup-status--completed { background: rgba(34,197,94,.12); color: #16a34a; }
-.pickup-status--cancelled, .pickup-status--failed { background: rgba(239,68,68,.12); color: #dc2626; }
-.pickup-status--scheduled { background: rgba(245,158,11,.13); color: #d97706; }
-.pickup-card__assign { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 10px 12px; border-radius: 10px; background: var(--primary-color); color:var(--on-primary); white-space: nowrap; font-size: .76rem; font-weight: 700; }
-.pickup-card__assign:disabled { opacity: .42; cursor: not-allowed; }
-.pickup-empty { display: flex; min-height: 240px; flex-direction: column; align-items: center; justify-content: center; border: 1px dashed var(--border-color); border-radius: 15px; color: var(--text-muted); }
-.pickup-empty h3 { margin: 10px 0 3px; color: var(--text-color); }
-.pickup-empty p { font-size: .82rem; }
-.assignment-backdrop { position: fixed; inset: 0; z-index: 500; display: grid; place-items: center; padding: 20px; background: rgba(15,23,42,.58); }
-.assignment-modal { position: relative; width: min(440px, 100%); padding: 28px; border: 1px solid var(--border-color); border-radius: 20px; background: var(--card-bg); box-shadow: 0 24px 70px rgba(0,0,0,.25); }
-.assignment-modal__close { position: absolute; top: 16px; right: 16px; border: 0; background: transparent; color: var(--text-muted); cursor: pointer; }
-.assignment-modal__icon { width: 50px; height: 50px; border-radius: 15px; }
-.assignment-modal h2 { margin: 16px 0 5px; color: var(--text-color); }
-.assignment-modal > p { color: var(--text-muted); font-size: .85rem; }
-.assignment-modal label { display: flex; flex-direction: column; gap: 7px; margin-top: 22px; color: var(--text-color); font-size: .8rem; font-weight: 700; }
-.assignment-modal select { padding: 12px; border: 1px solid var(--border-color); border-radius: 10px; }
-.assignment-modal__empty { margin-top: 10px; color: #d97706; font-size: .75rem; }
-.assignment-modal__actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
-.assignment-modal__cancel, .assignment-modal__submit { padding: 10px 16px; border-radius: 10px; }
-.assignment-modal__cancel { background: transparent; color: var(--text-muted); border: 1px solid var(--border-color); }
-.assignment-modal__submit { background: var(--primary-color); color:var(--on-primary); font-weight: 700; }
-.assignment-modal__submit:disabled { opacity: .45; cursor: not-allowed; }
-.pickup-cancel-modal .assignment-modal__icon { background: rgba(239,68,68,.12); color: #dc2626; }
-.pickup-cancel-modal label span { color: var(--text-muted); font-weight: 400; }
-.pickup-cancel-modal textarea { width: 100%; resize: vertical; padding: 11px 12px; border: 1px solid var(--border-color); border-radius: 10px; outline: 0; background: var(--card-bg); color: var(--text-color); font: inherit; font-weight: 400; }
-.pickup-cancel-modal textarea:focus { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(239,68,68,.1); }
-.pickup-cancel-modal .assignment-modal__submit { background: #dc2626; color: #fff; }
-.pickup-cancel-modal .assignment-modal__submit:hover:not(:disabled) { background: #b91c1c; }
-.pickup-cancel-modal .assignment-modal__cancel:disabled, .pickup-cancel-modal .assignment-modal__close:disabled { opacity: .6; cursor: not-allowed; }
-.pickup-card__cancel { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 12px; border: 1px solid rgba(220,38,38,.25); border-radius: 10px; background: rgba(239,68,68,.08); color: #dc2626; white-space: nowrap; font-size: .74rem; font-weight: 700; }
-.pickup-card__cancel:hover { background: rgba(239,68,68,.14); }
-.spin { animation: pickup-spin .9s linear infinite; }
-@keyframes pickup-spin { to { transform: rotate(360deg); } }
-@media (max-width: 1100px) { .pickup-card { grid-template-columns: 1.5fr 1fr auto; } .pickup-card__person:nth-of-type(2) { display: none; } }
-@media (max-width: 760px) { .pickup-page__header, .pickup-toolbar { flex-direction: column; } .pickup-page__refresh, .pickup-toolbar select { width: 100%; } .pickup-summary { grid-template-columns: repeat(2, 1fr); } .pickup-card { grid-template-columns: 1fr; } .pickup-card__person:nth-of-type(2) { display: flex; } .pickup-card__assign { width: 100%; } }
+/* =========================================================
+   PICKUP MANAGEMENT
+========================================================= */
 
+.pickup-page {
+    width: 100%;
+    min-width: 0;
+    color: var(--text-color);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.pickup-page__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 22px;
+}
+
+.pickup-page__header h1 {
+    margin: 4px 0 6px;
+    color: var(--text-color);
+    font-size: 1.9rem;
+    line-height: 1.15;
+    font-weight: 800;
+}
+
+.pickup-page__header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.pickup-page__eyebrow {
+    display: block;
+    color: var(--primary-color);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
+.pickup-page__refresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 13px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.74rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pickup-page__refresh:hover:not(:disabled) {
+    background: rgba(99, 102, 241, 0.06);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.pickup-page__refresh:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.pickup-alert {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 13px;
+    margin-bottom: 14px;
+
+    border-radius: 9px;
+
+    font-size: 0.74rem;
+    line-height: 1.45;
+}
+
+.pickup-alert--success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.24);
+    color: #15803d;
+}
+
+.pickup-alert--error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.24);
+    color: #b91c1c;
+}
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.pickup-toolbar {
+    display: flex;
+    align-items: stretch;
+    gap: 9px;
+    margin-bottom: 15px;
+}
+
+/* Search */
+
+.pickup-search {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    background: var(--card-bg);
+    color: var(--text-muted);
+}
+
+.pickup-search input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 10px 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.76rem;
+}
+
+.pickup-search input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Select */
+
+.pickup-toolbar select {
+    min-width: 150px;
+
+    padding: 0 11px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    outline: 0;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.74rem;
+
+    cursor: pointer;
+}
+
+/* Date */
+
+.pickup-date-filter {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    min-width: 165px;
+
+    padding: 0 10px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    background: var(--card-bg);
+    color: var(--text-muted);
+}
+
+.pickup-date-filter input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 9px 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.73rem;
+}
+
+.pickup-date-clear {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 0 10px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    background: var(--card-bg);
+    color: var(--text-muted);
+
+    font: inherit;
+    font-size: 0.71rem;
+
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.pickup-date-clear:hover {
+    background: rgba(99, 102, 241, 0.05);
+    color: var(--text-color);
+}
+
+/* =========================================================
+   SCREEN READER
+========================================================= */
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+
+    border: 0;
+}
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.pickup-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 9px;
+
+    margin-bottom: 16px;
+}
+
+.pickup-summary > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    min-width: 0;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    background: var(--card-bg);
+}
+
+.pickup-summary strong {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    line-height: 1.1;
+}
+
+.pickup-summary span {
+    color: var(--text-muted);
+    font-size: 0.66rem;
+}
+
+/* =========================================================
+   PICKUP LIST
+========================================================= */
+
+.pickup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+}
+
+/* =========================================================
+   PICKUP CARD
+========================================================= */
+
+.pickup-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(270px, 1.55fr)
+        minmax(140px, 0.8fr)
+        minmax(140px, 0.8fr)
+        auto;
+
+    align-items: center;
+
+    gap: 18px;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 15px 16px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 2px 9px rgba(15, 23, 42, 0.04);
+
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+/* =========================================================
+   LIGHT THEME - STATUS SHADES
+========================================================= */
+
+/*
+   These are intentionally NOT pure white.
+   They give the entire row a visible status tint.
+*/
+
+
+/* Scheduled */
+
+.pickup-card--scheduled {
+    background: #fff8e6;
+    border-color: #edcf8a;
+}
+
+.pickup-card--scheduled:hover {
+    background: #fff3d4;
+    border-color: #e3bd68;
+}
+
+
+/* Assigned */
+
+.pickup-card--assigned {
+    background: #e7f1fc;
+    border-color: #a8c9ed;
+}
+
+.pickup-card--assigned:hover {
+    background: #dcebf9;
+    border-color: #91b8e2;
+}
+
+
+/* In Progress */
+
+.pickup-card--in_progress {
+    background: #f0ebfc;
+    border-color: #c8bae9;
+}
+
+.pickup-card--in_progress:hover {
+    background: #e8e1f9;
+    border-color: #b9a7df;
+}
+
+
+/* Completed */
+
+.pickup-card--completed {
+    background: #e5f7ec;
+    border-color: #a5d8b7;
+}
+
+.pickup-card--completed:hover {
+    background: #d9f1e2;
+    border-color: #8fcaa4;
+}
+
+
+/* Cancelled */
+
+.pickup-card--cancelled {
+    background: #fce9e9;
+    border-color: #e4abab;
+}
+
+.pickup-card--cancelled:hover {
+    background: #f8dddd;
+    border-color: #d99393;
+}
+
+
+/* Failed */
+
+.pickup-card--failed {
+    background: #f9e2e2;
+    border-color: #df9e9e;
+}
+
+.pickup-card--failed:hover {
+    background: #f4d5d5;
+    border-color: #d58686;
+}
+
+
+/* Expired */
+
+.pickup-card--expired {
+    background: #eceef0;
+    border-color: #c5c9ce;
+}
+
+.pickup-card--expired:hover {
+    background: #e4e6e8;
+    border-color: #b3b8bd;
+}
+
+
+/* Unknown */
+
+.pickup-card--unknown {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+/*
+   Supports both:
+       <body class="dark">
+   and:
+       <body data-theme="dark">
+*/
+
+
+.dark .pickup-card--scheduled,
+[data-theme="dark"] .pickup-card--scheduled {
+    background: #292316;
+    border-color: #51401d;
+}
+
+.dark .pickup-card--scheduled:hover,
+[data-theme="dark"] .pickup-card--scheduled:hover {
+    background: #312a19;
+    border-color: #6a511f;
+}
+
+
+.dark .pickup-card--assigned,
+[data-theme="dark"] .pickup-card--assigned {
+    background: #172638;
+    border-color: #27476a;
+}
+
+.dark .pickup-card--assigned:hover,
+[data-theme="dark"] .pickup-card--assigned:hover {
+    background: #1b2d42;
+    border-color: #32608f;
+}
+
+
+.dark .pickup-card--in_progress,
+[data-theme="dark"] .pickup-card--in_progress {
+    background: #251d35;
+    border-color: #45336b;
+}
+
+.dark .pickup-card--in_progress:hover,
+[data-theme="dark"] .pickup-card--in_progress:hover {
+    background: #2b2140;
+    border-color: #5a4389;
+}
+
+
+.dark .pickup-card--completed,
+[data-theme="dark"] .pickup-card--completed {
+    background: #16291f;
+    border-color: #28543a;
+}
+
+.dark .pickup-card--completed:hover,
+[data-theme="dark"] .pickup-card--completed:hover {
+    background: #1a3225;
+    border-color: #347047;
+}
+
+
+.dark .pickup-card--cancelled,
+[data-theme="dark"] .pickup-card--cancelled {
+    background: #321d21;
+    border-color: #603137;
+}
+
+.dark .pickup-card--cancelled:hover,
+[data-theme="dark"] .pickup-card--cancelled:hover {
+    background: #3a2025;
+    border-color: #7a3c43;
+}
+
+
+.dark .pickup-card--failed,
+[data-theme="dark"] .pickup-card--failed {
+    background: #351a1a;
+    border-color: #6b2d2d;
+}
+
+.dark .pickup-card--failed:hover,
+[data-theme="dark"] .pickup-card--failed:hover {
+    background: #3d1c1c;
+    border-color: #863939;
+}
+
+
+.dark .pickup-card--expired,
+[data-theme="dark"] .pickup-card--expired {
+    background: #25282c;
+    border-color: #41464d;
+}
+
+.dark .pickup-card--expired:hover,
+[data-theme="dark"] .pickup-card--expired:hover {
+    background: #2b2e33;
+    border-color: #555b63;
+}
+
+/* =========================================================
+   INNER CARD AREAS
+========================================================= */
+
+.pickup-card__main,
+.pickup-card__person,
+.pickup-card__actions {
+    background: transparent;
+}
+
+/* =========================================================
+   PICKUP MAIN
+========================================================= */
+
+.pickup-card__main {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+
+    background: transparent;
+}
+
+.pickup-card__icon {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 auto;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    color: var(--primary-color);
+
+    background: rgba(99, 102, 241, 0.12);
+}
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.pickup-card__title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px 8px;
+
+    min-width: 0;
+}
+
+.pickup-card h3 {
+    margin: 0;
+
+    color: var(--text-color);
+
+    font-size: 0.9rem;
+    font-weight: 750;
+
+    line-height: 1.25;
+}
+
+.pickup-card__waste {
+    margin: 3px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.76rem;
+}
+
+/* =========================================================
+   PICKUP DETAILS
+========================================================= */
+
+.pickup-card__details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 7px;
+}
+
+.pickup-card__details span {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: var(--text-muted);
+
+    font-size: 0.67rem;
+    line-height: 1.3;
+}
+
+.pickup-card__details svg {
+    flex: 0 0 auto;
+}
+
+/* =========================================================
+   CUSTOMER / AGENT
+========================================================= */
+
+.pickup-card__person {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+
+    background: transparent;
+}
+
+.pickup-card__person small {
+    margin-bottom: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 0.62rem;
+    font-weight: 600;
+}
+
+.pickup-card__person strong {
+    display: block;
+
+    overflow: hidden;
+
+    color: var(--text-color);
+
+    font-size: 0.78rem;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pickup-card__person span {
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    color: var(--text-muted);
+
+    font-size: 0.65rem;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   DARK THEME TEXT
+========================================================= */
+
+.dark .pickup-card h3,
+[data-theme="dark"] .pickup-card h3 {
+    color: #f3f4f6;
+}
+
+.dark .pickup-card__waste,
+[data-theme="dark"] .pickup-card__waste {
+    color: #aeb6c2;
+}
+
+.dark .pickup-card__details span,
+[data-theme="dark"] .pickup-card__details span {
+    color: #8f99a6;
+}
+
+.dark .pickup-card__person small,
+[data-theme="dark"] .pickup-card__person small {
+    color: #89939f;
+}
+
+.dark .pickup-card__person strong,
+[data-theme="dark"] .pickup-card__person strong {
+    color: #f0f2f5;
+}
+
+.dark .pickup-card__person span,
+[data-theme="dark"] .pickup-card__person span {
+    color: #8f99a6;
+}
+
+/* =========================================================
+   STATUS BADGES
+========================================================= */
+
+.pickup-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 4px 8px;
+
+    border-radius: 999px;
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* Light theme badges */
+
+.pickup-status--scheduled {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pickup-status--assigned {
+    background: #bfdbfe;
+    color: #1d4ed8;
+}
+
+.pickup-status--in_progress {
+    background: #ddd6fe;
+    color: #6d28d9;
+}
+
+.pickup-status--completed {
+    background: #bbf7d0;
+    color: #166534;
+}
+
+.pickup-status--cancelled {
+    background: #fecaca;
+    color: #991b1b;
+}
+
+.pickup-status--failed {
+    background: #fca5a5;
+    color: #7f1d1d;
+}
+
+.pickup-status--expired {
+    background: #d1d5db;
+    color: #374151;
+}
+
+/* Dark theme badges */
+
+.dark .pickup-status--scheduled,
+[data-theme="dark"] .pickup-status--scheduled {
+    background: #6b4e16;
+    color: #fcd34d;
+}
+
+.dark .pickup-status--assigned,
+[data-theme="dark"] .pickup-status--assigned {
+    background: #1e4f7a;
+    color: #93c5fd;
+}
+
+.dark .pickup-status--in_progress,
+[data-theme="dark"] .pickup-status--in_progress {
+    background: #50358a;
+    color: #c4b5fd;
+}
+
+.dark .pickup-status--completed,
+[data-theme="dark"] .pickup-status--completed {
+    background: #21643c;
+    color: #86efac;
+}
+
+.dark .pickup-status--cancelled,
+[data-theme="dark"] .pickup-status--cancelled {
+    background: #712f37;
+    color: #fca5a5;
+}
+
+.dark .pickup-status--failed,
+[data-theme="dark"] .pickup-status--failed {
+    background: #792c2c;
+    color: #fca5a5;
+}
+
+.dark .pickup-status--expired,
+[data-theme="dark"] .pickup-status--expired {
+    background: #454a51;
+    color: #d1d5db;
+}
+
+/* =========================================================
+   PICKUP KIND
+========================================================= */
+
+.pickup-kind {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px 7px;
+
+    border-radius: 999px;
+
+    font-size: 0.56rem;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.pickup-kind.recurring {
+    background: rgba(124, 58, 237, 0.13);
+    color: #7c3aed;
+}
+
+.pickup-kind.one-time {
+    background: rgba(14, 165, 233, 0.13);
+    color: #0284c7;
+}
+
+.dark .pickup-kind.recurring,
+[data-theme="dark"] .pickup-kind.recurring {
+    background: #40306b;
+    color: #c4b5fd;
+}
+
+.dark .pickup-kind.one-time,
+[data-theme="dark"] .pickup-kind.one-time {
+    background: #243b4d;
+    color: #7dd3fc;
+}
+
+/* =========================================================
+   ACTION AREA
+========================================================= */
+
+.pickup-card__actions {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    min-width: 36px;
+
+    background: transparent;
+}
+
+/* =========================================================
+   THREE DOT BUTTON
+========================================================= */
+
+.pickup-card__menu-trigger {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 9px;
+
+    background: rgba(15, 23, 42, 0.07);
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.pickup-card__menu-trigger:hover {
+    background: rgba(15, 23, 42, 0.13);
+    border-color: rgba(15, 23, 42, 0.13);
+}
+
+/* Dark menu button */
+
+.dark .pickup-card__menu-trigger,
+[data-theme="dark"] .pickup-card__menu-trigger {
+    border-color: rgba(255, 255, 255, 0.06);
+    background: #111417;
+    color: #d4d8de;
+}
+
+.dark .pickup-card__menu-trigger:hover,
+[data-theme="dark"] .pickup-card__menu-trigger:hover {
+    background: #1d2228;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* =========================================================
+   ACTION MENU
+========================================================= */
+
+.pickup-card__menu {
+    position: absolute;
+
+    top: calc(100% + 6px);
+    right: 0;
+
+    z-index: 100;
+
+    width: 190px;
+
+    padding: 6px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 11px;
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 16px 40px rgba(15, 23, 42, 0.16);
+}
+
+.pickup-card__menu-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 10px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.72rem;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.pickup-card__menu-item:hover {
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.pickup-card__menu-item:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.pickup-card__menu-item--danger {
+    color: #dc2626;
+}
+
+.pickup-card__menu-item--danger:hover {
+    background: rgba(239, 68, 68, 0.09);
+}
+
+/* Dark action menu */
+
+.dark .pickup-card__menu,
+[data-theme="dark"] .pickup-card__menu {
+    border-color: #30363e;
+    background: #171a1f;
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.dark .pickup-card__menu-item,
+[data-theme="dark"] .pickup-card__menu-item {
+    color: #dce1e7;
+}
+
+.dark .pickup-card__menu-item:hover,
+[data-theme="dark"] .pickup-card__menu-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.pickup-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 220px;
+
+    padding: 30px;
+
+    border: 1px dashed var(--border-color);
+    border-radius: 14px;
+
+    background: var(--card-bg);
+
+    color: var(--text-muted);
+}
+
+.pickup-empty h3 {
+    margin: 10px 0 4px;
+
+    color: var(--text-color);
+
+    font-size: 0.95rem;
+}
+
+.pickup-empty p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.75rem;
+}
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.pickup-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+    color: var(--text-muted);
+
+    font-size: 0.72rem;
+}
+
+.pickup-pagination > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pickup-pagination button {
+    padding: 7px 11px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font: inherit;
+
+    cursor: pointer;
+}
+
+.pickup-pagination button:hover:not(:disabled) {
+    background: rgba(99, 102, 241, 0.06);
+}
+
+.pickup-pagination button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   ASSIGNMENT MODAL
+========================================================= */
+
+.assignment-backdrop {
+    position: fixed;
+    inset: 0;
+
+    z-index: 500;
+
+    display: grid;
+    place-items: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.assignment-modal {
+    position: relative;
+
+    width: min(440px, 100%);
+
+    padding: 27px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+
+    background: var(--card-bg);
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.25);
+}
+
+.assignment-modal__close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text-muted);
+
+    cursor: pointer;
+}
+
+.assignment-modal__close:hover {
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--text-color);
+}
+
+.assignment-modal__icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.12);
+}
+
+.assignment-modal h2 {
+    margin: 15px 0 5px;
+
+    color: var(--text-color);
+
+    font-size: 1.15rem;
+}
+
+.assignment-modal > p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+.assignment-modal label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    color: var(--text-color);
+
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.assignment-modal select {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.76rem;
+}
+
+.assignment-modal select:focus {
+    border-color: var(--primary-color);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+
+.assignment-modal__empty {
+    margin-top: 10px;
+
+    padding: 9px 11px;
+
+    border-radius: 8px;
+
+    background: rgba(245, 158, 11, 0.1);
+    color: #b45309;
+
+    font-size: 0.7rem;
+}
+
+.assignment-modal__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-top: 23px;
+}
+
+.assignment-modal__cancel,
+.assignment-modal__submit {
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.assignment-modal__cancel {
+    border: 1px solid var(--border-color);
+
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.assignment-modal__cancel:hover:not(:disabled) {
+    background: rgba(15, 23, 42, 0.04);
+    color: var(--text-color);
+}
+
+.assignment-modal__submit {
+    border: 0;
+
+    background: var(--primary-color);
+    color: var(--on-primary);
+}
+
+.assignment-modal__submit:hover:not(:disabled) {
+    filter: brightness(0.96);
+}
+
+.assignment-modal__submit:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Dark modal */
+
+.dark .assignment-modal,
+[data-theme="dark"] .assignment-modal {
+    border-color: #30363e;
+    background: #171a1f;
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.5);
+}
+
+.dark .assignment-modal__close,
+[data-theme="dark"] .assignment-modal__close {
+    color: #89939f;
+}
+
+.dark .assignment-modal__close:hover,
+[data-theme="dark"] .assignment-modal__close:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.dark .assignment-modal h2,
+[data-theme="dark"] .assignment-modal h2 {
+    color: #f3f4f6;
+}
+
+.dark .assignment-modal > p,
+[data-theme="dark"] .assignment-modal > p {
+    color: #89939f;
+}
+
+.dark .assignment-modal label,
+[data-theme="dark"] .assignment-modal label {
+    color: #dce1e7;
+}
+
+.dark .assignment-modal select,
+[data-theme="dark"] .assignment-modal select {
+    border-color: #30363e;
+    background: #111417;
+    color: #f3f4f6;
+}
+
+.dark .assignment-modal__cancel,
+[data-theme="dark"] .assignment-modal__cancel {
+    border-color: #30363e;
+    color: #9ca3af;
+}
+
+/* =========================================================
+   CANCEL MODAL
+========================================================= */
+
+.pickup-cancel-modal .assignment-modal__icon {
+    color: #dc2626;
+    background: rgba(239, 68, 68, 0.12);
+}
+
+.pickup-cancel-modal textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    resize: vertical;
+
+    min-height: 80px;
+
+    padding: 10px 11px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font: inherit;
+    font-size: 0.76rem;
+}
+
+.pickup-cancel-modal textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.pickup-cancel-modal textarea:focus {
+    border-color: #dc2626;
+
+    box-shadow:
+        0 0 0 3px rgba(239, 68, 68, 0.08);
+}
+
+.pickup-cancel-modal .assignment-modal__submit {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.pickup-cancel-modal
+.assignment-modal__submit:hover:not(:disabled) {
+    background: #b91c1c;
+}
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.spin {
+    animation: pickup-spin 0.9s linear infinite;
+}
+
+@keyframes pickup-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .pickup-card {
+        grid-template-columns:
+            minmax(250px, 1.4fr)
+            minmax(130px, 0.8fr)
+            auto;
+    }
+
+    .pickup-card__person:nth-of-type(2) {
+        display: none;
+    }
+
+    .pickup-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .pickup-page__header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .pickup-page__refresh {
+        width: 100%;
+    }
+
+    .pickup-toolbar {
+        flex-direction: column;
+    }
+
+    .pickup-search,
+    .pickup-toolbar select,
+    .pickup-date-filter {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .pickup-date-clear {
+        width: 100%;
+        min-height: 40px;
+    }
+
+    .pickup-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .pickup-card__person {
+        padding-left: 57px;
+    }
+
+    .pickup-card__actions {
+        justify-content: flex-end;
+    }
+
+    .pickup-card__menu {
+        right: 0;
+    }
+
+    .pickup-pagination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pickup-pagination > div {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .pickup-page__header h1 {
+        font-size: 1.5rem;
+    }
+
+    .pickup-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .pickup-summary > div {
+        padding: 12px 14px;
+    }
+
+    .pickup-card {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .pickup-card__main {
+        align-items: flex-start;
+    }
+
+    .pickup-card__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+    }
+
+    .pickup-card__title-row {
+        gap: 5px 6px;
+    }
+
+    .pickup-card h3 {
+        font-size: 0.84rem;
+    }
+
+    .pickup-card__waste {
+        font-size: 0.72rem;
+    }
+
+    .pickup-card__details {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .pickup-card__person {
+        padding-left: 0;
+    }
+
+    .pickup-card__menu {
+        width: 175px;
+    }
+
+    .assignment-backdrop {
+        padding: 12px;
+    }
+
+    .assignment-modal {
+        padding: 22px;
+        border-radius: 15px;
+    }
+
+    .assignment-modal__actions {
+        flex-direction: column-reverse;
+    }
+
+    .assignment-modal__cancel,
+    .assignment-modal__submit {
+        width: 100%;
+    }
+}

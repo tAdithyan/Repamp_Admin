@@ -1,0 +1,940 @@
+/* =========================================================
+   PAGE
+========================================================= */
+
+.guest-users-page {
+  width: 100%;
+  min-height: 100%;
+  padding: 24px;
+  color: var(--text-color);
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.guest-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.guest-section-label {
+  margin-bottom: 7px;
+  color: var(--primary-color);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.guest-users-title {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.guest-users-description {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   COUNT BADGE
+========================================================= */
+
+.guest-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 13px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+
+  background: var(--card-bg);
+  color: var(--text-muted);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.guest-count-badge svg {
+  color: var(--primary-color);
+}
+
+
+/* =========================================================
+   ALERTS
+========================================================= */
+
+.guest-alert {
+  max-width: 100%;
+  min-height: 40px;
+
+  margin-bottom: 16px;
+  padding: 9px 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.guest-alert button {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+}
+
+.guest-alert button:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.guest-error {
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.06);
+  color: #f87171;
+}
+
+.guest-success {
+  border: 1px solid rgba(50, 200, 149, 0.2);
+  background: rgba(50, 200, 149, 0.06);
+  color: #54d6aa;
+}
+
+
+/* =========================================================
+   PANEL
+========================================================= */
+
+.guest-panel {
+  width: 100%;
+
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+
+  background: var(--card-bg);
+
+  overflow: hidden;
+}
+
+.guest-create-panel {
+  margin-bottom: 22px;
+  padding: 22px;
+}
+
+.guest-list-panel {
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   PANEL HEADER
+========================================================= */
+
+.guest-panel-header {
+  margin-bottom: 20px;
+}
+
+.guest-panel-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.guest-panel-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  background: var(--surface-muted);
+  color: var(--primary-color);
+}
+
+.guest-panel-title {
+  margin: 0;
+
+  color: var(--text-color);
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.guest-panel-description {
+  margin: 4px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.guest-form-field {
+  width: 100%;
+}
+
+.guest-form-field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--text-color);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.guest-form-field label span {
+  margin-left: 3px;
+  color: #ef4444;
+}
+
+.guest-input-wrapper {
+  position: relative;
+  max-width: 500px;
+}
+
+.guest-input-wrapper svg {
+  position: absolute;
+
+  top: 50%;
+  left: 13px;
+
+  transform: translateY(-50%);
+
+  color: var(--text-muted);
+
+  pointer-events: none;
+}
+
+.guest-input-wrapper input {
+  width: 100%;
+  height: 42px;
+
+  padding: 0 13px 0 40px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+
+  outline: none;
+
+  background: var(--surface-muted);
+  color: var(--text-color);
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.guest-input-wrapper input::placeholder {
+  color: var(--text-muted);
+}
+
+.guest-input-wrapper input:focus {
+  border-color: var(--primary-color);
+
+  box-shadow:
+    0 0 0 3px
+      color-mix(
+        in srgb,
+        var(--primary-color) 8%,
+        transparent
+      );
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.guest-form-footer {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 18px;
+}
+
+.guest-create-button {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: var(--primary-color);
+  color: #fff;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.guest-create-button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.guest-create-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LIST HEADER
+========================================================= */
+
+.guest-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 20px 22px 17px;
+}
+
+.guest-total {
+  padding: 6px 10px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+
+  background: var(--surface-muted);
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.guest-search-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0 22px 18px;
+}
+
+.guest-search-wrapper > svg {
+  position: absolute;
+
+  left: 13px;
+
+  color: var(--text-muted);
+
+  pointer-events: none;
+}
+
+.guest-search-wrapper input {
+  width: 100%;
+  height: 40px;
+
+  padding: 0 42px 0 39px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+
+  outline: none;
+
+  background: var(--surface-muted);
+  color: var(--text-color);
+
+  font-family: inherit;
+  font-size: 12px;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.guest-search-wrapper input::placeholder {
+  color: var(--text-muted);
+}
+
+.guest-search-wrapper input:focus {
+  border-color: var(--primary-color);
+
+  box-shadow:
+    0 0 0 3px
+      color-mix(
+        in srgb,
+        var(--primary-color) 7%,
+        transparent
+      );
+}
+
+.guest-clear-search {
+  position: absolute;
+
+  right: 9px;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+  color: var(--text-muted);
+
+  cursor: pointer;
+}
+
+.guest-clear-search:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.guest-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border-top: 1px solid var(--border-color);
+}
+
+.guest-table {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: collapse;
+}
+
+.guest-table thead {
+  background: var(--surface-muted);
+}
+
+.guest-table th {
+  padding: 12px 20px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.05em;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.guest-table td {
+  padding: 15px 20px;
+
+  border-top: 1px solid var(--border-color);
+
+  vertical-align: middle;
+}
+
+.guest-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.guest-table tbody tr:hover {
+  background: var(--surface-muted);
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.guest-user-info {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.guest-avatar {
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  background: var(--surface-muted);
+  color: var(--primary-color);
+}
+
+.guest-name {
+  color: var(--text-color);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.guest-role {
+  margin-top: 3px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   LOGIN ID
+========================================================= */
+
+.guest-login-id {
+  display: inline-flex;
+
+  padding: 5px 9px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+
+  background: var(--surface-muted);
+  color: var(--text-color);
+
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.02em;
+}
+
+
+/* =========================================================
+   STATUS CONTROL
+========================================================= */
+
+.guest-status-control {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+/* =========================================================
+   STATUS TOGGLE
+========================================================= */
+
+.guest-status-toggle {
+  position: relative;
+
+  width: 43px;
+  height: 23px;
+
+  flex: 0 0 43px;
+
+  padding: 0;
+
+  border: 1px solid #3a444f;
+  border-radius: 999px;
+
+  background: #2b333d;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.guest-status-toggle:hover:not(:disabled) {
+  border-color: #56616d;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.03);
+}
+
+.guest-status-toggle.active {
+  background: #32c895;
+
+  border-color: #32c895;
+
+  box-shadow:
+    0 0 0 3px rgba(50, 200, 149, 0.08);
+}
+
+.guest-status-toggle.active:hover:not(:disabled) {
+  background: #38d09c;
+
+  border-color: #38d09c;
+
+  box-shadow:
+    0 0 0 3px rgba(50, 200, 149, 0.12);
+}
+
+.guest-status-toggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   STATUS KNOB
+========================================================= */
+
+.guest-status-knob {
+  position: absolute;
+
+  top: 3px;
+  left: 3px;
+
+  width: 15px;
+  height: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf3f1;
+
+  color: #238c69;
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.2s ease;
+}
+
+.guest-status-toggle.active
+  .guest-status-knob {
+  transform: translateX(20px);
+}
+
+
+/* =========================================================
+   STATUS TEXT
+========================================================= */
+
+.guest-status-text {
+  min-width: 52px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.guest-status-text.active {
+  color: #32c895;
+}
+
+.guest-status-text.inactive {
+  color: #7f8a97;
+}
+
+
+/* =========================================================
+   CREATED
+========================================================= */
+
+.guest-created {
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.guest-actions-header {
+  text-align: center !important;
+}
+
+.guest-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.guest-delete-button {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+
+  background: var(--surface-muted);
+  color: #8d98a6;
+
+  cursor: pointer;
+
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.guest-delete-button:hover:not(:disabled) {
+  color: #ff7373;
+
+  border-color: rgba(
+    255,
+    115,
+    115,
+    0.35
+  );
+
+  background: rgba(
+    255,
+    115,
+    115,
+    0.07
+  );
+}
+
+.guest-delete-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.guest-empty-cell {
+  padding: 0 !important;
+}
+
+.guest-empty-state {
+  padding: 55px 20px;
+
+  text-align: center;
+}
+
+.guest-empty-icon {
+  width: 48px;
+  height: 48px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-color);
+  border-radius: 13px;
+
+  background: var(--surface-muted);
+  color: var(--text-muted);
+}
+
+.guest-empty-state h3 {
+  margin: 0;
+
+  color: var(--text-color);
+
+  font-size: 13px;
+}
+
+.guest-empty-state p {
+  margin: 6px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.guest-spinner {
+  animation: guestSpin 0.8s linear infinite;
+}
+
+@keyframes guestSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .guest-users-page {
+    padding: 15px;
+  }
+
+  .guest-page-header {
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+
+  .guest-users-title {
+    font-size: 23px;
+  }
+
+  .guest-count-badge {
+    align-self: flex-start;
+  }
+
+  .guest-create-panel {
+    padding: 17px;
+  }
+
+  .guest-form-footer {
+    justify-content: stretch;
+  }
+
+  .guest-create-button {
+    width: 100%;
+  }
+
+  .guest-list-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 17px;
+  }
+
+  .guest-total {
+    align-self: flex-start;
+  }
+
+  .guest-search-wrapper {
+    margin: 0 17px 17px;
+  }
+
+  .guest-table {
+    min-width: 760px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  .guest-users-page {
+    padding: 12px;
+  }
+
+  .guest-users-title {
+    font-size: 21px;
+  }
+
+  .guest-users-description {
+    font-size: 12px;
+  }
+
+  .guest-create-panel {
+    padding: 15px;
+  }
+
+  .guest-panel-title {
+    font-size: 14px;
+  }
+
+  .guest-panel-description {
+    font-size: 11px;
+  }
+
+  .guest-alert {
+    font-size: 11px;
+  }
+}
+/* Guest UniqueID validation hint */
+.guest-input-hint {
+  display: block;
+  margin-top: 7px;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.4;
+}

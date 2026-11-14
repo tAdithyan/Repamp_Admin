@@ -1,12 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-} from "react";
-import {
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import React, { createContext, useState, useEffect } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 export const AuthContext = createContext();
@@ -41,13 +34,10 @@ export const AuthProvider = ({ children }) => {
       }
     }
 
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (user) => {
-        setCurrentUser(user);
-        setLoading(false);
-      }
-    );
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
 
     return unsubscribe;
   }, []);
@@ -57,10 +47,7 @@ export const AuthProvider = ({ children }) => {
     const { token, user } = loginData;
 
     localStorage.setItem("token", token);
-    localStorage.setItem(
-      "user",
-      JSON.stringify(user)
-    );
+    localStorage.setItem("user", JSON.stringify(user));
 
     setToken(token);
     setAppUser(user);
@@ -100,7 +87,7 @@ export const AuthProvider = ({ children }) => {
     if (!appUser) return false;
 
     return permissions.some((permission) =>
-      appUser.permissions?.includes(permission)
+      appUser.permissions?.includes(permission),
     );
   };
 
@@ -109,7 +96,7 @@ export const AuthProvider = ({ children }) => {
     if (!appUser) return false;
 
     return permissions.every((permission) =>
-      appUser.permissions?.includes(permission)
+      appUser.permissions?.includes(permission),
     );
   };
 
@@ -126,7 +113,6 @@ export const AuthProvider = ({ children }) => {
     logout,
     setAppUser,
     updateAppUser,
-
 
     hasPermission,
     hasAnyPermission,

@@ -1,10 +1,13 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   Activity,
   ArrowRight,
   CalendarClock,
   CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   CircleDollarSign,
   Clock3,
   FileText,
@@ -84,6 +87,11 @@ export default function Dashboard() {
         percent: (statuses[key] / total) * 100,
       }));
   }, [data]);
+  const pct = (part, whole) =>
+    Number(whole) > 0 ? (Number(part || 0) / Number(whole)) * 100 : 0;
+  const agentCount = data?.users?.agents || 0;
+  const paidInvoices = data?.billing?.paid || 0;
+  const totalInvoices = paidInvoices + (data?.billing?.unpaid || 0);
   const monthlyTrend = data?.monthlyTrend || [];
   const selectedMonthData = monthlyTrend.find(
     (item) => item.month === selectedMonth,
@@ -113,18 +121,7 @@ export default function Dashboard() {
           <p>Live waste collection, asset and billing performance.</p>
         </div>
         <div className="dashboard-title-actions">
-          <label className="dashboard-month-filter">
-            <CalendarClock size={16} />
-            <span>Month</span>
-            <input
-              type="month"
-              aria-label="Filter dashboard by month and year"
-              value={selectedMonth}
-              onChange={(event) => {
-                if (event.target.value) setSelectedMonth(event.target.value);
-              }}
-            />
-          </label>
+          <MonthPicker value={selectedMonth} onChange={setSelectedMonth} />
           <button onClick={() => refetch()} disabled={isFetching}>
             <RefreshCw
               size={17}
@@ -140,6 +137,60 @@ export default function Dashboard() {
           <button onClick={() => refetch()}>Try again</button>
         </div>
       )}
+      <article className="dashboard-panel snapshot-panel">
+        <PanelHeading
+          icon={<MapPinned />}
+          title="Operations snapshot"
+          subtitle="Current totals · not filtered by selected month"
+        />
+        <div className="snapshot-grid">
+          <Snapshot
+            icon={<UsersRound />}
+            tone="indigo"
+            label="Active users"
+            value={data?.users?.active || 0}
+            hint="Registered and active"
+          />
+          <Snapshot
+            icon={<UserRound />}
+            tone="violet"
+            label="Collection agents"
+            value={agentCount}
+            hint="Field team strength"
+          />
+          <Snapshot
+            icon={<Clock3 />}
+            tone="green"
+            label="Agents on shift"
+            value={data?.activeShifts || 0}
+            progress={pct(data?.activeShifts, agentCount)}
+            hint={`of ${agentCount} agents`}
+          />
+          <Snapshot
+            icon={<CalendarClock />}
+            tone="orange"
+            label="Active contracts"
+            value={data?.recurring?.active || 0}
+            hint="Recurring pickups"
+          />
+          <Snapshot
+            icon={<Trash2 />}
+            tone="sky"
+            label="Assigned bins"
+            value={data?.bins?.assigned || 0}
+            progress={pct(data?.bins?.assigned, data?.bins?.total)}
+            hint={`of ${data?.bins?.total || 0} bins`}
+          />
+          <Snapshot
+            icon={<CheckCircle2 />}
+            tone="teal"
+            label="Paid invoices"
+            value={paidInvoices}
+            progress={pct(paidInvoices, totalInvoices)}
+            hint={`of ${totalInvoices} invoices`}
+          />
+        </div>
+      </article>
       <div className="dashboard-kpis">
         <Kpi
           icon={<Truck />}
@@ -206,31 +257,13 @@ export default function Dashboard() {
               </div>
             </>
           )}
-          <div className="weight-chart">
-            {monthlyTrend.map((item) => (
-              <button
-                type="button"
-                className={`weight-column ${selectedMonthData?.month === item.month ? "selected" : ""}`}
-                key={item.month}
-                aria-pressed={selectedMonthData?.month === item.month}
-                aria-label={`${monthLabel(item.month, { month: "long", year: "numeric" })}: ${item.collections} completed pickups, ${item.weight} kilograms, ${money(item.amount)}`}
-                title={`${money(item.amount)} collection value`}
-                onClick={() => setSelectedMonth(item.month)}
-              >
-                <div className="bar-space">
-                  <i
-                    style={{
-                      height: `${Math.max(item.weight ? 12 : 3, (item.weight / maxWeight) * 155)}px`,
-                    }}
-                  >
-                    <b>{item.weight ? `${item.weight} kg` : ""}</b>
-                  </i>
-                </div>
-                <strong>{monthLabel(item.month, { month: "short" })}</strong>
-                <small>{item.collections} pickups</small>
-              </button>
-            ))}
-          </div>
+          <MonthlyLineChart
+            data={monthlyTrend}
+            selectedMonth={selectedMonthData?.month}
+            maxWeight={maxWeight}
+            onSelect={setSelectedMonth}
+            monthLabel={monthLabel}
+          />
         </article>
         <article className="dashboard-panel status-panel">
           <PanelHeading
@@ -239,27 +272,7 @@ export default function Dashboard() {
             subtitle={`Request distribution · ${monthLabel(selectedMonth, { month: "long", year: "numeric" })}`}
           />
           {statusRows.length ? (
-            <div className="status-list">
-              {statusRows.map((status) => (
-                <div key={status.key}>
-                  <div className="status-copy">
-                    <span>
-                      <i style={{ background: status.color }} />
-                      {status.label}
-                    </span>
-                    <strong>{status.value}</strong>
-                  </div>
-                  <div className="status-track">
-                    <i
-                      style={{
-                        width: `${status.percent}%`,
-                        background: status.color,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <StatusBarChart rows={statusRows} />
           ) : (
             <div className="panel-empty">No pickup activity this month.</div>
           )}
@@ -272,45 +285,6 @@ export default function Dashboard() {
         </article>
       </div>
       <div className="dashboard-secondary-grid">
-        <article className="dashboard-panel snapshot-panel">
-          <PanelHeading
-            icon={<MapPinned />}
-            title="Operations snapshot"
-            subtitle="Current totals · not filtered by selected month"
-          />
-          <div className="snapshot-grid">
-            <Snapshot
-              icon={<UsersRound />}
-              label="Active users"
-              value={data?.users?.active || 0}
-            />
-            <Snapshot
-              icon={<UserRound />}
-              label="Collection agents"
-              value={data?.users?.agents || 0}
-            />
-            <Snapshot
-              icon={<Clock3 />}
-              label="Agents on shift"
-              value={data?.activeShifts || 0}
-            />
-            <Snapshot
-              icon={<CalendarClock />}
-              label="Active contracts"
-              value={data?.recurring?.active || 0}
-            />
-            <Snapshot
-              icon={<Trash2 />}
-              label="Assigned bins"
-              value={data?.bins?.assigned || 0}
-            />
-            <Snapshot
-              icon={<CheckCircle2 />}
-              label="Paid invoices"
-              value={data?.billing?.paid || 0}
-            />
-          </div>
-        </article>
         <article className="dashboard-panel recent-panel">
           <PanelHeading
             icon={<Clock3 />}
@@ -457,6 +431,209 @@ export default function Dashboard() {
   );
 }
 
+function MonthPicker({ value, onChange }) {
+  const [open, setOpen] = useState(false);
+  const [year, setYear] = useState(() => Number(value.slice(0, 4)));
+  const ref = useRef(null);
+  const todayKey = new Date(Date.now() + 330 * 60 * 1000)
+    .toISOString()
+    .slice(0, 7);
+  const fmt = (y, m, options) =>
+    new Date(Date.UTC(y, m - 1, 15)).toLocaleDateString("en-IN", {
+      ...options,
+      timeZone: "Asia/Kolkata",
+    });
+  const [valueYear, valueMonth] = value.split("-").map(Number);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onDown = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) setOpen(false);
+    };
+    const onKey = (event) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const toggle = () => {
+    if (!open) setYear(valueYear);
+    setOpen((current) => !current);
+  };
+  const pick = (key) => {
+    onChange(key);
+    setOpen(false);
+  };
+
+  return (
+    <div className="month-picker" ref={ref}>
+      <button
+        type="button"
+        className="mp-trigger"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-label="Filter dashboard by month and year"
+        onClick={toggle}
+      >
+        <CalendarClock size={16} />
+        <b>{fmt(valueYear, valueMonth, { month: "long", year: "numeric" })}</b>
+        <ChevronDown size={15} className={open ? "mp-chevron open" : "mp-chevron"} />
+      </button>
+      {open && (
+        <div className="mp-pop" role="dialog" aria-label="Choose month">
+          <div className="mp-head">
+            <button
+              type="button"
+              className="mp-nav"
+              aria-label="Previous year"
+              onClick={() => setYear((y) => y - 1)}
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <strong>{year}</strong>
+            <button
+              type="button"
+              className="mp-nav"
+              aria-label="Next year"
+              onClick={() => setYear((y) => y + 1)}
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+          <div className="mp-grid">
+            {Array.from({ length: 12 }, (_, i) => {
+              const month = i + 1;
+              const key = `${year}-${String(month).padStart(2, "0")}`;
+              const classes = [
+                "mp-cell",
+                key === value ? "selected" : "",
+                key === todayKey ? "today" : "",
+              ].join(" ");
+              return (
+                <button
+                  type="button"
+                  key={key}
+                  className={classes}
+                  aria-pressed={key === value}
+                  onClick={() => pick(key)}
+                >
+                  {fmt(year, month, { month: "short" })}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            type="button"
+            className="mp-today"
+            onClick={() => pick(todayKey)}
+          >
+            Jump to this month
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MonthlyLineChart({
+  data,
+  selectedMonth,
+  maxWeight,
+  onSelect,
+  monthLabel,
+}) {
+  const n = data.length;
+  if (!n) return <div className="panel-empty">No collection data yet.</div>;
+
+  const points = data.map((item, i) => ({
+    ...item,
+    x: ((i + 0.5) / n) * 100, // centred over its axis label
+    y: 100 - (item.weight / maxWeight) * 100,
+  }));
+
+  // Smooth curve with horizontal tangents (never overshoots the data)
+  const linePath = points.reduce((d, p, i) => {
+    if (i === 0) return `M ${p.x} ${p.y}`;
+    const prev = points[i - 1];
+    const mx = (prev.x + p.x) / 2;
+    return `${d} C ${mx} ${prev.y}, ${mx} ${p.y}, ${p.x} ${p.y}`;
+  }, "");
+  const areaPath = `${linePath} L ${points[n - 1].x} 100 L ${points[0].x} 100 Z`;
+
+  return (
+    <div className="line-chart">
+      <div className="line-plot">
+        <div className="line-canvas">
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="lineFill" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="0%"
+                  style={{ stopColor: "var(--primary-color)", stopOpacity: 0.22 }}
+                />
+                <stop
+                  offset="100%"
+                  style={{ stopColor: "var(--primary-color)", stopOpacity: 0 }}
+                />
+              </linearGradient>
+            </defs>
+            <path d={areaPath} fill="url(#lineFill)" />
+            <path
+              d={linePath}
+              className="line-stroke"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
+
+          {points.map((item) => {
+            const selected = item.month === selectedMonth;
+            return (
+              <button
+                type="button"
+                key={item.month}
+                className={`line-point ${selected ? "selected" : ""}`}
+                style={{ left: `${item.x}%`, top: `${item.y}%` }}
+                aria-pressed={selected}
+                aria-label={`${monthLabel(item.month, { month: "long", year: "numeric" })}: ${item.collections} completed pickups, ${item.weight} kilograms, ${money(item.amount)}`}
+                onClick={() => onSelect(item.month)}
+              >
+                <span className="line-tip">{item.weight} kg</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        className="line-axis"
+        style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
+      >
+        {data.map((item) => (
+          <button
+            type="button"
+            key={item.month}
+            className={item.month === selectedMonth ? "selected" : ""}
+            onClick={() => onSelect(item.month)}
+          >
+            <strong>{monthLabel(item.month, { month: "short" })}</strong>
+            <small>{item.collections} pickups</small>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Kpi({ icon, tone, label, value, note }) {
   return (
     <article className={`dashboard-kpi ${tone}`}>
@@ -480,14 +657,50 @@ function PanelHeading({ icon, title, subtitle }) {
     </div>
   );
 }
-function Snapshot({ icon, label, value }) {
+function StatusBarChart({ rows }) {
+  const max = Math.max(1, ...rows.map((row) => row.value));
   return (
-    <div className="snapshot-item">
-      <span>{icon}</span>
-      <div>
-        <strong>{value}</strong>
-        <small>{label}</small>
+    <div
+      className="status-bars"
+      role="img"
+      aria-label={rows.map((r) => `${r.label}: ${r.value}`).join(", ")}
+    >
+      {rows.map((status) => (
+        <div className="status-bar-col" key={status.key}>
+          <span className="status-bar-value">{status.value}</span>
+          <div className="status-bar-track">
+            <i
+              style={{
+                height: `${Math.max(6, (status.value / max) * 100)}%`,
+                background: status.color,
+              }}
+            />
+          </div>
+          <small>{status.label}</small>
+          <em>{Math.round(status.percent)}%</em>
+        </div>
+      ))}
+    </div>
+  );
+}
+function Snapshot({ icon, label, value, tone = "indigo", progress, hint }) {
+  const hasProgress = progress !== undefined;
+  return (
+    <div className={`snapshot-item ${tone}`}>
+      <div className="snapshot-top">
+        <span className="snapshot-icon">{icon}</span>
+        {hasProgress && (
+          <em className="snapshot-pct">{Math.round(progress)}%</em>
+        )}
       </div>
+      <strong>{value}</strong>
+      <small>{label}</small>
+      {hasProgress && (
+        <div className="snapshot-meter">
+          <i style={{ width: `${Math.min(100, progress)}%` }} />
+        </div>
+      )}
+      {hint && <p>{hint}</p>}
     </div>
   );
 }
