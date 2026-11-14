@@ -16,7 +16,7 @@ import "./AdminLayout.css";
 
 import {
   SidebarAccessProvider,
-  SidebarPage,
+  SidebarPageGuard1,
 } from "../../context/SidebarAccess";
 
 
